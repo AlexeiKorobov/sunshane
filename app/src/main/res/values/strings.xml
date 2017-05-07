@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">Sunshine</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="hello_world">Today, June</string>
+    <string name="action_settings">Send text</string>
+    <string name="action_email">Create Email</string>
+    <string name="action_get_contact">Get contact</string>
 
 </resources>
