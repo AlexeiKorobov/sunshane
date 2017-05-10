@@ -35,6 +35,8 @@ public  class ForeCastFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        //TODO read about states https://developer.android.com/guide/topics/resources/runtime-changes.html
+        setRetainInstance(true);
     }
 
     @Override
