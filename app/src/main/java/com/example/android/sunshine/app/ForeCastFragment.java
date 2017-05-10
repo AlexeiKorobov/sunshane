@@ -1,5 +1,7 @@
 package com.example.android.sunshine.app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,8 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.android.sunshine.tools.FetchWeatherTask;
 
 
@@ -67,7 +72,16 @@ public  class ForeCastFragment extends Fragment {
                             R.id.list_item_forecast_text_view);
             ListView list = (ListView)rootView.findViewById(R.id.list_view_forecast);
             list.setAdapter(mAdapter);
-
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String item = mAdapter.getItem(position);
+                    //Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), DetailedActivity.class);
+                    intent.putExtra(Intent.EXTRA_TEXT, item);
+                    startActivity(intent);
+                }
+            });
         }
         catch (Exception ex){
             Log.e(TAG, ex.toString());
