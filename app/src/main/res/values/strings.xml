@@ -3,7 +3,21 @@
 
     <string name="app_name">Sunshine</string>
     <string name="title_activity_detail">Details</string>
+    <string name="title_settings_activity">Setting</string>
     <string name="action_settings">Setting</string>
+
+
+
     <string name="action_refresh" translatable="false">Refresh</string>
+
+    <!-- preferances.xml -->
+    <string name="pref_location_label">Location</string>
+    <string name="pref_units_label">Units</string>
+    <string name="pref_city_default" translatable="false">Moscow</string>
+    <string name="pref_units_default" translatable="false">Kelvin</string>
+    <string name="pref_list_units_key" translatable="false">pref_list_units</string>
+    <string name="pref_city_key" translatable="false">pref_city</string>
+
+
 
 </resources>

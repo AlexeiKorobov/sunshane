@@ -2,7 +2,9 @@ package com.example.android.sunshine.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +42,16 @@ public  class ForeCastFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        try {
+            weatherUpdate();
+        } catch (Exception ex){
+            Log.e(TAG, ex.toString());
+        }
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.forecastfragment, menu);
     }
@@ -49,13 +61,10 @@ public  class ForeCastFragment extends Fragment {
         try {
             int id = item.getItemId();
             if (id == R.id.action_refresh) {
-                mAdapter.clear();
-                List<String> days = getData();
-                mAdapter.addAll(days);
+                weatherUpdate();
                 return true;
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex){
                 Log.e(TAG, ex.toString());
         }
         return super.onOptionsItemSelected(item);
@@ -67,7 +76,6 @@ public  class ForeCastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         try {
-
             mAdapter = new ArrayAdapter<String>(
                             getActivity(),
                             R.layout.list_item_forecast,
@@ -84,17 +92,26 @@ public  class ForeCastFragment extends Fragment {
                     startActivity(intent);
                 }
             });
-        }
-        catch (Exception ex){
+        } catch (Exception ex){
             Log.e(TAG, ex.toString());
         }
         return rootView;
     }
 
+    private void weatherUpdate() throws InterruptedException, java.util.concurrent.ExecutionException {
+        mAdapter.clear();
+        List<String> days = getData();
+        mAdapter.addAll(days);
+    }
+
     private List<String> getData() throws InterruptedException, java.util.concurrent.ExecutionException {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String city = sharedPref.getString(getString(R.string.pref_city_key),
+                getString(R.string.pref_city_default));
+
         List<String> forecastJsonStr;
         forecastJsonStr = new FetchWeatherTask()
-                .execute("Moscow")
+                .execute(city)
                 .get();
         //Log.i(TAG, forecastJsonStr.toString());
         return forecastJsonStr;
