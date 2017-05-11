@@ -1,8 +1,12 @@
 package com.example.android.sunshine.tools;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.example.android.sunshine.app.R;
 
 import org.json.JSONException;
 
@@ -35,6 +39,8 @@ public class FetchWeatherTask extends AsyncTask<String, Void, List<String>> {
         String FORMAT_PARAM = "mode";
         String DAYS_PARAM = "cnt";
         String APPID_PARAM = "APPID";
+        boolean SHOW_FAHRENHEIT = Boolean.parseBoolean(params[1]);
+
         int NUMBER_DAYS = 7;
 
         List<String > result = null;
@@ -99,7 +105,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, List<String>> {
         }
         try {
             result = Arrays.asList(
-                    new WeatherJsonParser().getWeatherDataFromJson(forecastJsonStr, NUMBER_DAYS)
+                    new WeatherJsonParser().getWeatherDataFromJson(forecastJsonStr, SHOW_FAHRENHEIT, NUMBER_DAYS)
             );
         } catch (JSONException ex){
             Log.e(TAG, "Error JSON parsing", ex);

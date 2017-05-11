@@ -9,12 +9,12 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:inputType="text"
-        android:title="@string/pref_location_label"/>
+        android:title="@string/pref_location_label" />
 
     <ListPreference
         android:entries="@array/pref_units"
         android:entryValues="@array/pref_units"
         android:key="@string/pref_list_units_key"
         android:title="@string/pref_units_label"
-        android:defaultValue="@string/pref_units_default" />/>
+        android:defaultValue="@string/pref_units_default" />
 </PreferenceScreen>

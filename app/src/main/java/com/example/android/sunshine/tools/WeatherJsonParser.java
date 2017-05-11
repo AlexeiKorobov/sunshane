@@ -1,7 +1,11 @@
 package com.example.android.sunshine.tools;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.text.format.Time;
 import android.util.Log;
+
+import com.example.android.sunshine.app.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +40,7 @@ public class WeatherJsonParser {
         return highLowStr;
     }
 
-    public String[] getWeatherDataFromJson(String forecastJsonStr, int numDays)
+    public String[] getWeatherDataFromJson(String forecastJsonStr, boolean showInFahrenheit, int numDays)
             throws JSONException {
 
         // These are the names of the JSON objects that need to be extracted.
@@ -92,8 +96,13 @@ public class WeatherJsonParser {
             // Temperatures are in a child object called "temp".  Try not to name variables
             // "temp" when working with temperature.  It confuses everybody.
             JSONObject temperatureObject = dayForecast.getJSONObject(OWM_TEMPERATURE);
-            double high = temperatureObject.getDouble(OWM_MAX);
-            double low = temperatureObject.getDouble(OWM_MIN);
+
+            double delta = 0;
+            if (showInFahrenheit){
+                delta = 32;
+            }
+            double high = temperatureObject.getDouble(OWM_MAX) + delta;
+            double low = temperatureObject.getDouble(OWM_MIN) + delta;
 
             highAndLow = formatHighLows(high, low);
             resultStrs[i] = day + " - " + description + " - " + highAndLow;

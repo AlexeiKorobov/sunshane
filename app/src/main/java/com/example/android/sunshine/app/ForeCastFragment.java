@@ -100,20 +100,25 @@ public  class ForeCastFragment extends Fragment {
 
     private void weatherUpdate() throws InterruptedException, java.util.concurrent.ExecutionException {
         mAdapter.clear();
-        List<String> days = getData();
-        mAdapter.addAll(days);
+        List<String> forecast = getData();
+        mAdapter.addAll(forecast);
     }
 
     private List<String> getData() throws InterruptedException, java.util.concurrent.ExecutionException {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String city = sharedPref.getString(getString(R.string.pref_city_key),
                 getString(R.string.pref_city_default));
+        String units = sharedPref.getString(getString(R.string.pref_list_units_key),
+                getString(R.string.pref_units_default));
+        boolean showInF = false;
+        if(!units.equals(getString(R.string.pref_units_default))){
+            showInF = true;
+        }
 
-        List<String> forecastJsonStr;
-        forecastJsonStr = new FetchWeatherTask()
-                .execute(city)
+        List<String> listForecast;
+        listForecast = new FetchWeatherTask()
+                .execute(city, String.valueOf(showInF))
                 .get();
-        //Log.i(TAG, forecastJsonStr.toString());
-        return forecastJsonStr;
+        return listForecast;
     }
 }
