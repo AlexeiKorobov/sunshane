@@ -4,10 +4,11 @@
     <string name="app_name">Sunshine</string>
     <string name="title_activity_detail">Details</string>
     <string name="title_settings_activity">Setting</string>
+    <string name="title_share">Share</string>
+
+    <!-- menu -->
     <string name="action_settings">Setting</string>
-
-
-
+    <string name="action_map">Show on map</string>
     <string name="action_refresh" translatable="false">Refresh</string>
 
     <!-- preferances.xml -->

@@ -97,12 +97,13 @@ public class WeatherJsonParser {
             // "temp" when working with temperature.  It confuses everybody.
             JSONObject temperatureObject = dayForecast.getJSONObject(OWM_TEMPERATURE);
 
-            double delta = 0;
+            double high = temperatureObject.getDouble(OWM_MAX);
+            double low = temperatureObject.getDouble(OWM_MIN);
             if (showInFahrenheit){
-                delta = 32;
+                double delta = 32;
+                high = (high*1.8) + delta;
+                low = (low*1.8) + delta;
             }
-            double high = temperatureObject.getDouble(OWM_MAX) + delta;
-            double low = temperatureObject.getDouble(OWM_MIN) + delta;
 
             highAndLow = formatHighLows(high, low);
             resultStrs[i] = day + " - " + description + " - " + highAndLow;

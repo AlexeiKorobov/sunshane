@@ -3,7 +3,11 @@
     <string name="app_name">Прогноз</string>
     <string name="title_activity_detail">Детали</string>
     <string name="title_settings_activity">Настройки</string>
+    <string name="title_share">Поделиться</string>
+
+    <!-- menu -->
     <string name="action_settings">Настройки</string>
+    <string name="action_map">Показать на карте</string>
 
     <!-- preferances.xml -->
     <string name="pref_units_label">Единицы</string>

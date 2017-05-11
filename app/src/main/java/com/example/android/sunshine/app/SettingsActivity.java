@@ -32,7 +32,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    //TODO show the current option in the preference.xml
     public static class SettingsFragment extends PreferenceFragment
             implements SharedPreferences.OnSharedPreferenceChangeListener{
 
