@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         Log.i(TAG, "OnPause");
