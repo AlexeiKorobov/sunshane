@@ -73,7 +73,7 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_LOCATION_TABLE = "CREATE TABLE " + LocationEntry.TABLE_NAME + " (" +
 
-                LocationEntry._ID + " INTEGER PRIMARY KEY," +
+                LocationEntry._ID + " INTEGER PRIMARY KEY, " +
 
                 // the ID of the location entry associated with this weather data
 
